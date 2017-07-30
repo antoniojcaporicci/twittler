@@ -3,25 +3,82 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
+  <header>
+  <div class="container">
+    <h1>Twitt<b>L</b>er</h1>
+  </div>
+  </header>
   <body>
+  <div class="tweetContainer">
+  </div>
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
+        var $body = $('.tweetContainer');
         $body.html('');
 
+
         var index = streams.home.length - 1;
+         
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          var $tweet = $('<div class="tweet"></div>');
+
+          $tweet.html('<p class="tweet">' + '@' + '<a href="#" class="'+ tweet.user +'"">' + tweet.user + '</a>' + ': ' + tweet.message + ' ' + tweet.created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>');
           $tweet.appendTo($body);
           index -= 1;
         }
+      
+        $('.btn').on('click', function(){
+          $('.tweetContainer').append('<p class="tweet">' + '@' + '<a href="#">' + streams.home[streams.home.length-1].user +'</a>' + ': ' + streams.home[streams.home.length-1].message + ' ' + streams.home[streams.home.length-1].created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>')
+        });
+
+        $('.douglascalhoun').on('click', function(event){
+          event.preventDefault();
+          $('.tweetContainer').empty();
+
+          for(var i = 0; i < streams.users.douglascalhoun.length; i++){
+            $('.tweetContainer').append('<p class="tweet">' + '@' + '<a href="#">' + streams.users.douglascalhoun[i].user + '</a>' + ': ' + streams.users.douglascalhoun[i].message + ' ' + streams.users.douglascalhoun[i].created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>')
+          }
+        });
+
+        $('.sharksforcheap').on('click', function(event){
+          event.preventDefault();
+          $('.tweetContainer').empty();
+
+          for(var i = 0; i < streams.users.sharksforcheap.length; i++){
+            $('.tweetContainer').append('<p class="tweet">' + '@' + '<a href="#">' + streams.users.sharksforcheap[i].user + '</a>' + ': ' + streams.users.sharksforcheap[i].message + ' ' + streams.users.sharksforcheap[i].created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>')
+          }
+        });
+
+        $('.mracus').on('click', function(event){
+          event.preventDefault();
+          $('.tweetContainer').empty();
+
+          for(var i = 0; i < streams.users.mracus.length; i++){
+            $('.tweetContainer').append('<p class="tweet">' + '@' + '<a href="#">' + streams.users.mracus[i].user + '</a>' + ': ' + streams.users.mracus[i].message + ' ' + streams.users.mracus[i].created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>')
+          }
+        });
+
+        $('.shawndrost').on('click', function(event){
+          event.preventDefault();
+          $('.tweetContainer').empty();
+
+          for(var i = 0; i < streams.users.shawndrost.length; i++){
+            $('.tweetContainer').append('<p class="tweet">' + '@' + '<a href="#">' + streams.users.shawndrost[i].user + '</a>' + ': ' + streams.users.shawndrost[i].message + ' ' + streams.users.shawndrost[i].created_at.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' }) + '</p>')
+          }
+        });
 
       });
 
+
     </script>
+    <div class="form-actions">
+      <button type="submit" class="btn">Get more tweets</button>
+    </div>
   </body>
 </html>
